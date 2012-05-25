@@ -4,11 +4,11 @@
 		<style>
 			@font-face{
 				font-family: 'WebSymbolsRegular';
-				src: url('/fonts/websymbols-regular-webfont.eot');
-				src: url('/fonts/websymbols-regular-webfont.eot?#iefix') format('embedded-opentype'),
-				url('/fonts/websymbols-regular-webfont.woff') format('woff'),
-				url('/fonts/websymbols-regular-webfont.ttf') format('truetype'),
-				url('/fonts/websymbols-regular-webfont.svg#WebSymbolsRegular') format('svg');
+				src: url('/static/fonts/websymbols-regular-webfont.eot');
+				src: url('/static/fonts/websymbols-regular-webfont.eot?#iefix') format('embedded-opentype'),
+				url('/static/fonts/websymbols-regular-webfont.woff') format('woff'),
+				url('/static/fonts/websymbols-regular-webfont.ttf') format('truetype'),
+				url('/static/fonts/websymbols-regular-webfont.svg#WebSymbolsRegular') format('svg');
 			} 
 			.logo {
 				height: 50px;
@@ -59,32 +59,12 @@
 				bottom: 8px;
 			}
 			.nav_btn {
-				font-family: WebSymbolsRegular;
+				font-family: "WebSymbolsRegular";
 				display: block;
 				width: 40px;
 				height: 40px;
 				float: left;
 				background-repeat: no-repeat;
-			}
-			#search_btn {
-				background-image: url('http://cdn1.iconfinder.com/data/icons/glyph_set/32/search.png');
-				background-position-x: 4px;
-				background-position-y: 4px;
-			}
-			#properties_btn {
-				background-image: url('http://icons.iconarchive.com/icons/rade8/minium-2/32/General-Get-Info-icon.png');
-				background-position-x: 4px;
-				background-position-y: 4px;
-			}
-			#bi_btn {
-				background-image: url('http://cdn1.iconfinder.com/data/icons/duesseldorf/32/statistics.png');
-				background-position-x: 4px;
-				background-position-y: 4px;
-			}
-			#setup_btn {
-				background-image: url('http://aux.iconpedia.net/uploads/13713735001524250776.png');
-				background-position-x: 4px;
-				background-position-y: 4px;
 			}
 			.nav_btn.selected {
 				background-color: #fc8;
@@ -270,10 +250,10 @@
 			</div>
 		</header>
 		<nav>
-			<div class="nav_btn" id="search_btn"></div>
-			<div class="nav_btn" id="properties_btn"></div>
-			<div class="nav_btn" id="bi_btn"></div>
-			<div class="nav_btn" id="setup_btn"></div>
+			<div class="nav_btn" id="search_btn">L</div>
+			<div class="nav_btn" id="properties_btn">,​</div>
+			<div class="nav_btn" id="bi_btn">u</div>
+			<div class="nav_btn" id="setup_btn">S</div>
 		</nav>
 		<div id="map"></div>
 		<div id="search_panel" class="panel search_btn">
