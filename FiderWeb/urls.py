@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
+from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
 
@@ -16,7 +17,11 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-        
+    url(r'^static/', 'django.views.static.serve', {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+    
+         
     url(r'^request/conversion', views.get_model),
     url(r'^submit/manifest', views.approve_manifest),
     url(r'^federation/new/helo', views.start_token),
