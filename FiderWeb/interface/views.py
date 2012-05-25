@@ -1,8 +1,9 @@
 # Create your views here.
 import json
+import urllib2 
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
-
+from django.conf import settings
 #=======================================================#
 
 def index(request):
@@ -15,6 +16,10 @@ def get_model (request):
     Sends the conversion table
     """
 
+    #fb = settings.FIdER_BACKEND_URL
+    #mdl = sendMessageToServer("", fb+"/get_model/last", "GET")
+
+    #fields_table = json.loads(mdl)
     fields_table = {
         'Node' : {
             'LocationNote' : 'str',
@@ -47,6 +52,13 @@ def start_token (request):
     Answers the registration request and sends the "unique" token
     """
 
+
+    fb = settings.FIdER_BACKEND_URL
+    mdl = sendMessageToServer("", fb+"/get_model/last", "GET")
+    
+    v = json.loads(mdl)
+    v = v['version']
+
     import uuid
     token = str(uuid.uuid4())
     #TODO: prepare token and session
@@ -54,7 +66,7 @@ def start_token (request):
         "token": token,
         "message_type": u'response',
         "message_format": u'welcome',
-        "latest_model_version": 1,
+        "latest_model_version": v,
     }
 
     return HttpResponse(json.dumps(welcome_message), mimetype="application/json")
@@ -79,7 +91,7 @@ def request_write (request):
     """
     Answers a write request message
     """
-    jsonmessage = json.loads(request.POST['jsondata'])
+    jsonmessage = json.loads(request.REQUEST.get('jsondata', None))
     writes = jsonmessage['data']['upsert'].keys()
     response_write = {
         "token": jsonmessage['token'],
@@ -93,3 +105,27 @@ def request_write (request):
     }
 
     return HttpResponse(json.dumps(response_write), mimetype="application/json")
+
+
+
+def sendMessageToServer (jsonmessage, url, method):
+    """
+    Sends a json message to the main server and returns success if the response code is correct
+    :param jsonmessage: data to be sent to the server, already in json format (json.dumps())
+    :param url:
+    :param method:
+    :return: response from server
+    """
+
+
+    #TODO: placeholder, implement, note that cannot be async if we want to keep the full comm cycle in this one only; should we also keep the full response from the other server?
+
+    datalen = len(jsonmessage)
+    headers = {'Content-Type': 'application/json', 'Content-Length': datalen}
+
+    req = urllib2.Request(url, jsonmessage, headers)
+    conn = urllib2.urlopen(req)
+
+    return conn.read()
+
+

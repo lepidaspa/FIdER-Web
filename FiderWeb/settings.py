@@ -143,3 +143,7 @@ LOGGING = {
         },
     }
 }
+
+
+FIdER_BACKEND_URL = ""
+

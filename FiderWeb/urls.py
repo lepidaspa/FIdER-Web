@@ -22,7 +22,7 @@ urlpatterns = patterns('',
         }),
     
          
-    url(r'^request/conversion', views.get_model),
+    url(r'^request/model$', views.get_model),
     url(r'^submit/manifest', views.approve_manifest),
     url(r'^federation/new/helo', views.start_token),
 )
