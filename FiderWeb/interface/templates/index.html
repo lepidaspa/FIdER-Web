@@ -4,16 +4,16 @@
 		<style>
 			@font-face{
 				font-family: 'WebSymbolsRegular';
-				src: url('/static/fonts/websymbols-regular-webfont.eot');
-				src: url('/static/fonts/websymbols-regular-webfont.eot?#iefix') format('embedded-opentype'),
-				url('/static/fonts/websymbols-regular-webfont.woff') format('woff'),
-				url('/static/fonts/websymbols-regular-webfont.ttf') format('truetype'),
-				url('/static/fonts/websymbols-regular-webfont.svg#WebSymbolsRegular') format('svg');
+				src: url('../../static/fonts/websymbols-regular-webfont.eot');
+				src: url('../../static/fonts/websymbols-regular-webfont.eot?#iefix') format('embedded-opentype'),
+				url('../../static/fonts/websymbols-regular-webfont.woff') format('woff'),
+				url('../../static/fonts/websymbols-regular-webfont.ttf') format('truetype'),
+				url('../../static/fonts/websymbols-regular-webfont.svg#WebSymbolsRegular') format('svg');
 			} 
 			.logo {
 				height: 50px;
 				display: block;
-				width: 150px;
+				width: 190px;
 			}
 			body {
 				font-family: "segoe ui", verdana, Arial, Helvetica, sans-serif;
@@ -22,6 +22,7 @@
 			}
 			.left {
 				float: left;
+				left:50px;
 			}
 			.right {
 				float: right;
@@ -44,8 +45,14 @@
 				position: absolute;
 			}
 			#fider-logo{
-				font-size:2em;
-								
+				font-size:3.2em;							
+			}
+			#fider-logo span{
+				display:block;
+				left:50px;
+			}
+			#owner-logo span{
+				display:none;
 			}
 			footer {
 				position:relative;
@@ -65,6 +72,13 @@
 				height: 40px;
 				float: left;
 				background-repeat: no-repeat;
+				text-align: center;
+				vertical-align: middle;
+				font-size:x-large;
+			}
+			.nav_btn span{
+				position:relative;
+				top:5px;
 			}
 			.nav_btn.selected {
 				background-color: #fc8;
@@ -128,6 +142,10 @@
 			}
 			.olLayerGoogleCopyright.olLayerGoogleV3{
 				display: none;
+			}
+			
+			#owner-logo{
+				background-image: url(../../static/lepida_logo_white.png);
 			}
 		</style>
 		<script src="http://maps.google.com/maps/api/js?v=3.6&amp;sensor=false"></script>
@@ -203,7 +221,8 @@
 				$('.panel').hide();
 				FIdER.map = new OpenLayers.Map("map", {
 					sphericalMercator : true,
-					projection : "EPSG:900913"
+					projection : "EPSG:900913",
+					controls: []
 				});
 				
 				//Base Maps
@@ -228,8 +247,9 @@
 
 				//Controls
 				FIdER.map.addControl(new OpenLayers.Control.PanZoomBar());
+				FIdER.map.addControl(new OpenLayers.Control.Navigation());
 				FIdER.map.addControl(new OpenLayers.Control.LayerSwitcher($('layers_panel')));
-				FIdER.map.addControl(new OpenLayers.Control.Permalink());
+				//FIdER.map.addControl(new OpenLayers.Control.Permalink());
 				//FIdER.map.addControl(new OpenLayers.Control.Permalink('permalink'));
 				FIdER.map.addControl(new OpenLayers.Control.MousePosition());
 				FIdER.map.addControl(new OpenLayers.Control.KeyboardDefaults());
@@ -243,17 +263,21 @@
 	<body>
 		<header>
 			<div id="fider-logo" class="logo left">
+				<span>
 				FIdER
+				</span>
 			</div>
 			<div id="owner-logo" class="logo right">
+				<span>
 				Lepida S.p.A.
+				</span>
 			</div>
 		</header>
 		<nav>
-			<div class="nav_btn" id="search_btn">L</div>
-			<div class="nav_btn" id="properties_btn">,​</div>
-			<div class="nav_btn" id="bi_btn">u</div>
-			<div class="nav_btn" id="setup_btn">S</div>
+			<div class="nav_btn" id="search_btn"><span>L</span></div>
+			<div class="nav_btn" id="properties_btn"><span>,</span></div>
+			<div class="nav_btn" id="bi_btn"><span>u</span></div>
+			<div class="nav_btn" id="setup_btn"><span>S</span></div>
 		</nav>
 		<div id="map"></div>
 		<div id="search_panel" class="panel search_btn">
