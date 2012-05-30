@@ -9,6 +9,15 @@ from django.conf import settings
 def index(request):
     return render_to_response('index.html')
 
+
+def urls(request):
+    return HttpResponse(json.dumps({
+        'broker_get_proxies':'',
+        'broker_get_map':''
+    }))
+    
+
+
 #=======================================================#
 
 def get_model (request):
@@ -53,7 +62,7 @@ def start_token (request):
     """
 
 
-    fb = settings.FIdER_BACKEND_URL
+    fb = settings.get('FIdER_BACKEND_URL', "")
     mdl = sendMessageToServer("", fb+"/get_model/last", "GET")
     
     v = json.loads(mdl)
