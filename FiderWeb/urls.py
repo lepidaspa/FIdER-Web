@@ -25,4 +25,7 @@ urlpatterns = patterns('',
     url(r'^request/model$', views.get_model),
     url(r'^submit/manifest', views.approve_manifest),
     url(r'^federation/new/helo', views.start_token),
+    
+    url(r'^$', views.index),
+    url(r'^interface/urls$', views.urls),
 )
