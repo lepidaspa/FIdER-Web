@@ -62,12 +62,13 @@ def start_token (request):
     """
 
 
-    fb = settings.get('FIdER_BACKEND_URL', "")
-    mdl = sendMessageToServer("", fb+"/get_model/last", "GET")
+    #fb = settings.get('FIdER_BACKEND_URL', "")
+    #mdl = sendMessageToServer("", fb+"/get_model/last", "GET")
     
-    v = json.loads(mdl)
-    v = v['version']
-
+    #v = json.loads(mdl)
+    #v = v['version']
+    v = 1
+    
     import uuid
     token = str(uuid.uuid4())
     #TODO: prepare token and session
