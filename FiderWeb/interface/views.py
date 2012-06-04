@@ -30,26 +30,26 @@ def get_model (request):
 
     #fields_table = json.loads(mdl)
     fields_table = {
-        'Node' : {
-            'LocationNote' : 'str',
-            'Tipologia': 'str',
-            'Address' : 'str',
-            'Neighborhood': 'str',
+        'Duct' : {
+            'ID' : 'str',
+            'Owner': 'str',
+            'OwnerID' : 'str',
+            'StartID': 'str',
+            'EndID': 'str',
+            'Length': 'str',
+            'Type': 'str',
+            'Availability': 'str',
+            'CreationDate': 'str',
+            'LastUpdate': 'str',
         },
         'Well' : {
-            'Name' : 'str',
-            'RETE' : 'str',
-            'Address' : 'str',
-            'Closure' : 'str',
-            'Width' : 'int',
-            'Length' : 'int'
-        },
-        'Duct' : {
-            'Length': 'int',
-            'Tube': 'str',
-            'CODICE': 'str',
-            'RETE': 'str',
-            'Infrastructure': 'str'
+            'ID': 'int',
+            'Owner': 'str',
+            'OwnerID': 'str',
+            'Address': 'str',
+            'Type': 'str',
+            'CreationDate': 'str',
+            'LastUpdate': 'str',
         }
 
     }

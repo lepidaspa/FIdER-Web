@@ -2,14 +2,11 @@
 	<head>
 		<title>FIdER</title>
 		<style>
-			@font-face{
+			@font-face {
 				font-family: 'WebSymbolsRegular';
 				src: url('../../static/fonts/websymbols-regular-webfont.eot');
-				src: url('../../static/fonts/websymbols-regular-webfont.eot?#iefix') format('embedded-opentype'),
-				url('../../static/fonts/websymbols-regular-webfont.woff') format('woff'),
-				url('../../static/fonts/websymbols-regular-webfont.ttf') format('truetype'),
-				url('../../static/fonts/websymbols-regular-webfont.svg#WebSymbolsRegular') format('svg');
-			} 
+				src: url('../../static/fonts/websymbols-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../../static/fonts/websymbols-regular-webfont.woff') format('woff'), url('../../static/fonts/websymbols-regular-webfont.ttf') format('truetype'), url('../../static/fonts/websymbols-regular-webfont.svg#WebSymbolsRegular') format('svg');
+			}
 			.logo {
 				height: 50px;
 				display: block;
@@ -22,7 +19,7 @@
 			}
 			.left {
 				float: left;
-				left:50px;
+				left: 50px;
 			}
 			.right {
 				float: right;
@@ -44,18 +41,18 @@
 				left: 40px;
 				position: absolute;
 			}
-			#fider-logo{
-				font-size:3.2em;							
+			#fider-logo {
+				font-size: 3.2em;
 			}
-			#fider-logo span{
-				display:block;
-				left:50px;
+			#fider-logo span {
+				display: block;
+				left: 50px;
 			}
-			#owner-logo span{
-				display:none;
+			#owner-logo span {
+				display: none;
 			}
 			footer {
-				position:relative;
+				position: relative;
 				height: 8px;
 				background-color: white;
 				border-top: 1px solid gray;
@@ -74,11 +71,11 @@
 				background-repeat: no-repeat;
 				text-align: center;
 				vertical-align: middle;
-				font-size:x-large;
+				font-size: x-large;
 			}
-			.nav_btn span{
-				position:relative;
-				top:5px;
+			.nav_btn span {
+				position: relative;
+				top: 5px;
 			}
 			.nav_btn.selected {
 				background-color: #fc8;
@@ -89,12 +86,12 @@
 			.nav_btn.selected.hover {
 				background-color: #fa4;
 			}
-			.panel .subpanel{
-				width:330px;
-				left:10px;
-				top:10px;
+			.panel .subpanel {
+				width: 330px;
+				left: 10px;
+				top: 10px;
 				text-align: justify;
-				position:relative;
+				position: relative;
 			}
 			.panel {
 				position: absolute;
@@ -105,46 +102,42 @@
 				z-index: 1000;
 				background-color: #FFC887;
 			}
-			.title{
-				height:40px;
+			.title {
+				height: 40px;
 				display: block;
 				font-size: 14px;
-				padding-left:4px;
+				padding-left: 4px;
 			}
-			
-			.title span{
-				padding-bottom:24px;
-				display:inline-block;
-				vertical-align:middle;
+			.title span {
+				padding-bottom: 24px;
+				display: inline-block;
+				vertical-align: middle;
 			}
 			.subpanel {
 				padding-top: 5px;
-				padding-bottom:5px;
-				margin-bottom:10px;
+				padding-bottom: 5px;
+				margin-bottom: 10px;
 				background-color: white;
 			}
-			.subpanel .content{
+			.subpanel .content {
 				padding-left: 6px;
 				border-left: 1px solid gray;
 				margin-left: 18px;
 				margin-top: -9px;
 			}
-			
-			button{
-				width:160px;
-				margin-left:10px;
-				margin-top:8px;
-				float:left;
+			button {
+				width: 160px;
+				margin-left: 10px;
+				margin-top: 8px;
+				float: left;
 			}
-			
-			.olLayerGooglePoweredBy.olLayerGoogleV3.gmnoprint{
-				display:none;
-			}
-			.olLayerGoogleCopyright.olLayerGoogleV3{
+			.olLayerGooglePoweredBy.olLayerGoogleV3.gmnoprint {
 				display: none;
 			}
-			
-			#owner-logo{
+			.olLayerGoogleCopyright.olLayerGoogleV3 {
+				display: none;
+			}
+			#owner-logo {
 				background-image: url(../../static/lepida_logo_white.png);
 			}
 		</style>
@@ -162,11 +155,11 @@
 				var width = $(window).width() - $('nav').width();
 				var height = $(window).height() - $('header').height() - $('footer').height() - 10;
 				$('#map').width(width);
-				$('.large').width(width/2);
+				$('.large').width(width / 2);
 				$('nav').height(height);
 				$('#map').height(height);
 				$('.panel').height(height);
-				$('footer').css('top', $(window).height() - $('header').height()-10- $('footer').height());
+				$('footer').css('top', $(window).height() - $('header').height() - 10 - $('footer').height());
 			};
 			//projections
 			FIdER.projections = {};
@@ -179,6 +172,8 @@
 			FIdER.start.extend(new OpenLayers.LonLat(9.1980988, 43.73086379999999).transform(FIdER.projections.wgs84, FIdER.projections.google));
 			FIdER.start.extend(new OpenLayers.LonLat(12.7558364, 45.1395245).transform(FIdER.projections.wgs84, FIdER.projections.google));
 
+
+			FIdER.vector_layer = new OpenLayers.Layer.Vector();
 			//FIdER.features = new OpenLayers.
 
 			//global events
@@ -191,7 +186,7 @@
 			$('.nav_btn').live('mouseout', function() {
 				$(this).removeClass('hover');
 			});
-			
+
 			$('.nav_btn').live('click', function() {
 				if($(this).hasClass('selected')) {
 					$('.nav_btn').removeClass('selected');
@@ -203,59 +198,64 @@
 					$('.panel.' + $(this).attr('id')).show();
 				}
 			});
-			$('#search_panel .subpanel .title').live('click', function(){
+			$('#search_panel .subpanel .title').live('click', function() {
 				$('.panel .subpanel .content').hide();
 				$(this).next().show();
 			});
-			
-			$('do_clear_btn').live('click', function(){
+
+			$('do_clear_btn').live('click', function() {
 				$('.panel .subpanel .content').hide();
-				
+
 			});
 			//run
 			$(function() {
-				
+
 				$('.panel .content').hide();
-				
+
 				FIdER.refresh();
 				$('.panel').hide();
-				FIdER.map = new OpenLayers.Map("map", {
-					sphericalMercator : true,
-					projection : "EPSG:900913",
-					controls: []
+
+				$.getJson('/urls', function(data) {
+					$.urls = data;
+
+					FIdER.map = new OpenLayers.Map("map", {
+						sphericalMercator : true,
+						projection : "EPSG:900913",
+						controls : []
+					});
+
+					//Base Maps
+					FIdER.map.addLayer(new OpenLayers.Layer.Google("Google Satellite", {
+						type : google.maps.MapTypeId.SATELLITE,
+						numZoomLevels : 22
+					}));
+					FIdER.map.addLayer(new OpenLayers.Layer.Google("Google Physical", {
+						type : google.maps.MapTypeId.TERRAIN,
+						visibility : false
+					}));
+					FIdER.map.addLayer(new OpenLayers.Layer.Google("Google Streets", {
+						numZoomLevels : 20,
+						visibility : false
+					}));
+					FIdER.map.addLayer(new OpenLayers.Layer.Google("Google Hybrid", {
+						type : google.maps.MapTypeId.HYBRID,
+						numZoomLevels : 22,
+						visibility : false
+					}));
+					FIdER.map.addLayer(new OpenLayers.Layer.OSM("OpenStreetMap"));
+
+					//Controls
+					FIdER.map.addControl(new OpenLayers.Control.PanZoomBar());
+					FIdER.map.addControl(new OpenLayers.Control.Navigation());
+					FIdER.map.addControl(new OpenLayers.Control.LayerSwitcher($('layers_panel')));
+					//FIdER.map.addControl(new OpenLayers.Control.Permalink());
+					//FIdER.map.addControl(new OpenLayers.Control.Permalink('permalink'));
+					FIdER.map.addControl(new OpenLayers.Control.MousePosition());
+					FIdER.map.addControl(new OpenLayers.Control.KeyboardDefaults());
+					FIdER.map.addControl(new OpenLayers.Control.TouchNavigation());
+
+					FIdER.map.zoomToExtent(FIdER.start);
 				});
-				
-				//Base Maps
-				FIdER.map.addLayer(new OpenLayers.Layer.Google("Google Satellite", {
-					type : google.maps.MapTypeId.SATELLITE,
-					numZoomLevels : 22
-				}));
-				FIdER.map.addLayer(new OpenLayers.Layer.Google("Google Physical", {
-					type : google.maps.MapTypeId.TERRAIN,
-					visibility : false
-				}));
-				FIdER.map.addLayer(new OpenLayers.Layer.Google("Google Streets", {
-					numZoomLevels : 20,
-					visibility : false
-				}));
-				FIdER.map.addLayer(new OpenLayers.Layer.Google("Google Hybrid", {
-					type : google.maps.MapTypeId.HYBRID,
-					numZoomLevels : 22,
-					visibility : false
-				}));
-				FIdER.map.addLayer(new OpenLayers.Layer.OSM("OpenStreetMap"));
-
-				//Controls
-				FIdER.map.addControl(new OpenLayers.Control.PanZoomBar());
-				FIdER.map.addControl(new OpenLayers.Control.Navigation());
-				FIdER.map.addControl(new OpenLayers.Control.LayerSwitcher($('layers_panel')));
-				//FIdER.map.addControl(new OpenLayers.Control.Permalink());
-				//FIdER.map.addControl(new OpenLayers.Control.Permalink('permalink'));
-				FIdER.map.addControl(new OpenLayers.Control.MousePosition());
-				FIdER.map.addControl(new OpenLayers.Control.KeyboardDefaults());
-				FIdER.map.addControl(new OpenLayers.Control.TouchNavigation());
-
-				FIdER.map.zoomToExtent(FIdER.start);
 			});
 
 		</script>
@@ -263,29 +263,33 @@
 	<body>
 		<header>
 			<div id="fider-logo" class="logo left">
-				<span>
-				FIdER
-				</span>
+				<span> FIdER </span>
 			</div>
 			<div id="owner-logo" class="logo right">
-				<span>
-				Lepida S.p.A.
-				</span>
+				<span> Lepida S.p.A. </span>
 			</div>
 		</header>
 		<nav>
-			<div class="nav_btn" id="search_btn"><span>L</span></div>
-			<div class="nav_btn" id="properties_btn"><span>,</span></div>
-			<div class="nav_btn" id="bi_btn"><span>u</span></div>
-			<div class="nav_btn" id="setup_btn"><span>S</span></div>
+			<div class="nav_btn" id="search_btn">
+				<span>L</span>
+			</div>
+			<div class="nav_btn" id="properties_btn">
+				<span>,</span>
+			</div>
+			<div class="nav_btn" id="bi_btn">
+				<span>u</span>
+			</div>
+			<div class="nav_btn" id="setup_btn">
+				<span>S</span>
+			</div>
 		</nav>
 		<div id="map"></div>
 		<div id="search_panel" class="panel search_btn">
 			<div class="subpanel">
 				<div class="title">
-						<img src="http://cdn5.iconfinder.com/data/icons/duesseldorf/32/world.png">
-						<span>Geographic</span>
-				</div> 
+					<img src="http://cdn5.iconfinder.com/data/icons/duesseldorf/32/world.png">
+					<span>Geographic</span>
+				</div>
 				<div class="content">
 					<label for="search_geo_address">Address:</label>
 					<input type="text" id="search_geo_address" />
@@ -293,9 +297,9 @@
 			</div>
 			<div class="subpanel">
 				<div class="title">
-						<img src="http://www.freeiconsweb.com/Icons-show/cc_mono_icon_set_png/box.png">
-						<span>Inventory</span>
-				</div> 
+					<img src="http://www.freeiconsweb.com/Icons-show/cc_mono_icon_set_png/box.png">
+					<span>Inventory</span>
+				</div>
 				<div class="content">
 					<label for="search_geo_address">Element type:</label>
 					<select>
@@ -303,22 +307,27 @@
 					</select>
 				</div>
 			</div>
-			<button id="do_search_btn">Search</button>
-			<button id="do_clear_btn">Clear</button>
+			<button id="do_search_btn">
+				Search
+			</button>
+			<button id="do_clear_btn">
+				Clear
+			</button>
 		</div>
 		<div id="properties_panel" class="panel properties_btn">
 			<div class="subpanel">
-				 Prperties for item:
+				Prperties for item:
 			</div>
 		</div>
 		<div id="bi_panel" class="large panel bi_btn">
 			<div class="subpanel">
-				 BI Queries
+				BI Queries
 			</div>
 		</div>
 		<div id="bi_panel" class="panel setup_btn">
 			<div class="subpanel" id="layers_panel">
-				 Layers<br />
+				Layers
+				<br />
 			</div>
 		</div>
 		<footer>
